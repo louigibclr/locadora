@@ -153,7 +153,8 @@ void clearscr(void) {
 Filme cadastrarFilme()
 {
     Filme f;
-
+    
+    do {
     printf("\n- - - Cadastro de Filme - - -\n");
     printf("Informe o titulo do filme: ");
     fgets(f.titulo, MAX_STRING, stdin);
@@ -165,12 +166,17 @@ Filme cadastrarFilme()
 
     printf("Informe o ano de lancamento do filme: ");
     scanf("%d", &f.anoLancamento);
-
+    
     printf("Informe a classificacao do filme (0.0 a 10.0): ");
     scanf("%f", &f.classificacao);
 
     printf("Informe a quantidade de copias em estoque: ");
     scanf("%d", &f.quantidade);
+    if (f.quantidade < 0) {
+        printf("\nDigite uma quantidade maior que zero\n");
+        while(getchar() != '\n');
+    }
+    } while (f.quantidade < 0);
 
     return f;
 }
